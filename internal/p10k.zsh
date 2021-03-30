@@ -3400,7 +3400,7 @@ prompt_todo() {
   unset P9K_TODO_TOTAL_TASK_COUNT P9K_TODO_FILTERED_TASK_COUNT
   [[ -r $_p9k__todo_file && -x $_p9k__todo_command ]] || return
   if ! _p9k_cache_stat_get $0 $_p9k__todo_file; then
-    local count="$($_p9k__todo_command -p ls | command tail -1)"
+    local count="$($_p9k__todo_command -p ls $POWERLEVEL9K_TODO_FILTER | command tail -1)"
     if [[ $count == (#b)'TODO: '([[:digit:]]##)' of '([[:digit:]]##)' '* ]]; then
       _p9k_cache_stat_set 1 $match[1] $match[2]
     else
